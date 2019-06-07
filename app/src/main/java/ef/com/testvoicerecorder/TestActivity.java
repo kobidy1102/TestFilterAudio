@@ -7,7 +7,9 @@ import android.media.AudioTrack;
 import android.media.MediaRecorder;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.BassBoost;
+import android.media.audiofx.EnvironmentalReverb;
 import android.media.audiofx.NoiseSuppressor;
+import android.media.audiofx.PresetReverb;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -121,6 +123,26 @@ public class TestActivity extends AppCompatActivity {
 
      //   audioTrack.setPlaybackRate(22050);
 
+        /* BassBoost base = new BassBoost(1, player.getAudioSessionId()); //using the player id to
+        base.setStrength((short) 1000);*/
+
+//        EnvironmentalReverb environmentalReverb = new EnvironmentalReverb(1,audioTrack.getAudioSessionId());
+//        environmentalReverb.setRoomLevel((short) -1000);
+//        environmentalReverb.setRoomHFLevel((short) -500);
+//        environmentalReverb.setDecayTime(3920);
+//        environmentalReverb.setDecayHFRatio((short) 700);
+//        environmentalReverb.setReflectionsLevel((short) -1230);
+//        environmentalReverb.setReflectionsDelay(20);
+//        environmentalReverb.setReverbLevel((short) -2);
+//        environmentalReverb.setReverbDelay(29);
+//        environmentalReverb.setDiffusion((short) 3000);
+//        environmentalReverb.setDensity((short) 1000);
+
+//        PresetReverb presetReverb = new PresetReverb(0,
+//                audioTrack.getAudioSessionId());
+//        presetReverb.setPreset(PresetReverb.PRESET_LARGEHALL);
+//        audioTrack.setAuxEffectSendLevel(100.0f);
+
     }
 
     private  void startRecorder(){
@@ -185,15 +207,14 @@ public class TestActivity extends AppCompatActivity {
         seekBarPitch.setMax(10);
         seekBarPitch.setProgress(4);
 
-        final BassBoost base = new BassBoost(1, audioTrack.getAudioSessionId()); //using the player id to
 
         seekBarPitch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 Log.e("abc","seek pitch:"+progress);
-               // audioTrack.setPlaybackRate(progress*3000);
+                audioTrack.setPlaybackRate(progress*3000);
 
-                base.setStrength((short) (250*progress));
+
             }
 
             @Override
